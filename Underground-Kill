@@ -1,4 +1,6 @@
-local Target = "Username"
+--[[
+    local Target = "Username"
+]]
 
 Targeting = true
 
@@ -19,7 +21,6 @@ while Targeting == true do
     end
 end
 
---noclip
 game.RunService.Stepped:Connect(function()
     for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
         if v:IsA("BasePart") then
