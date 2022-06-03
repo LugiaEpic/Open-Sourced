@@ -1,12 +1,10 @@
---[[
-    local Target = "Username"
-]]
+local Target = ""
 
 Targeting = true
 
 while Targeting == true do
     wait()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.HumanoidRootPart.CFrame + Vector3.new(0, -7, 0)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.Head.CFrame + Vector3.new(0, 5, 0)
     for i, v in next, game.Players.LocalPlayer.Backpack:GetChildren() do
         if v:IsA("Tool") and v.Name == "Combat" then
             game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
