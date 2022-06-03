@@ -1,4 +1,6 @@
-local Target = ""
+--[[
+    local Target = "Username"
+]]
 
 Targeting = true
 
@@ -11,7 +13,6 @@ while Targeting == true do
         end
     end
     game.Players.LocalPlayer.Character.Combat:Activate()
-    game.Workspace.Camera.CameraSubject = game.Players[Target].Character.HumanoidRootPart
     if game.Players[Target].Character.BodyEffects["K.O"].Value == true then
         Targeting = false
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.LowerTorso.CFrame
