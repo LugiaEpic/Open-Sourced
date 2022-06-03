@@ -15,7 +15,6 @@ while Targeting == true do
     if game.Players[Target].Character.BodyEffects["K.O"].Value == true then
         Targeting = false
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.LowerTorso.CFrame
-        game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
     end
 end
 
