@@ -1,0 +1,29 @@
+local Target = "Username"
+
+Targeting = true
+
+while Targeting == true do
+    wait()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.Head.CFrame + Vector3.new(0, 5, 0)
+    for i, v in next, game.Players.LocalPlayer.Backpack:GetChildren() do
+        if v:IsA("Tool") and v.Name == "Combat" then
+            game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+        end
+    end
+    game.Players.LocalPlayer.Character.Combat:Activate()
+    game.Workspace.Camera.CameraSubject = game.Players[Target].Character.HumanoidRootPart
+    if game.Players[Target].Character.BodyEffects["K.O"].Value == true then
+        Targeting = false
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.LowerTorso.CFrame
+        game.Workspace.Camera.CameraSubject = game.Players.LocalPlayer.Character.Humanoid
+    end
+end
+
+--noclip
+game.RunService.Stepped:Connect(function()
+    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+        if v:IsA("BasePart") then
+            v.CanCollide = false
+        end
+    end
+end)
