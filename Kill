@@ -1,4 +1,4 @@
--- Old one was shit lmao so heres one that actually works
+-- New one since old one didn't worked.
 
 local Target = ""
 
@@ -21,7 +21,5 @@ game.RunService:BindToRenderStep("Auto-Killing", 0, function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.HumanoidRootPart.CFrame
     elseif game.Players[Target].Character.BodyEffects["K.O"].Value == true then
         game.RunService:UnbindFromRenderStep("Auto-Killing")
-        wait()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.HumanoidRootPart.CFrame
     end
 end)
