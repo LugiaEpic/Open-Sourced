@@ -1,28 +1,36 @@
---[[
-    local Target = "Username"
-]]
+-- Old one was shit lmao so heres one that actually works
 
-Targeting = true
+local Target = ""
 
-while Targeting == true do
-    wait()
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.Head.CFrame + Vector3.new(0, 5, 0)
-    for i, v in next, game.Players.LocalPlayer.Backpack:GetChildren() do
-        if v:IsA("Tool") and v.Name == "Combat" then
-            game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
-        end
-    end
+function ActivateFists()
     game.Players.LocalPlayer.Character.Combat:Activate()
-    if game.Players[Target].Character.BodyEffects["K.O"].Value == true then
-        Targeting = false
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.LowerTorso.CFrame
+end
+
+function DisableSeats()
+    for i,v in pairs(game.Workspace:GetDescendants()) do
+        if v:IsA("Seat") then
+            v:Destroy()
+        end
     end
 end
 
-game.RunService.Stepped:Connect(function()
-    for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-        if v:IsA("BasePart") then
-            v.CanCollide = false
+function EquipCombat()
+    for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+        if v:IsA("Tool") and v.Name == "Combat" then
+            v.Parent = game.Players.LocalPlayer.Character
         end
+    end
+end
+
+game.RunService:BindToRenderStep("Auto-Killing", 0, function()
+    if game.Players[Target].Character.BodyEffects["K.O"].Value == false then
+        EquipCombat()
+        BigFists()
+        ActivateFists()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.HumanoidRootPart.CFrame
+    elseif game.Players[Target].Character.BodyEffects["K.O"].Value == true then
+        game.RunService:UnbindFromRenderStep("Auto-Killing")
+        wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Target].Character.HumanoidRootPart.CFrame
     end
 end)
